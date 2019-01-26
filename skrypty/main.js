@@ -1,7 +1,7 @@
 (function(window) {
     'use strict';
 
-    var SERVER_URL = 'http://192.168.1.106:8080'
+    var SERVER_URL = 'http://192.168.1.106:8080/login'
     var LOGIN_FORM_SELECTOR = '#login-form';
 
     var Application = window.Application;

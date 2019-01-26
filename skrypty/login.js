@@ -20,20 +20,16 @@
             $(this).serializeArray().forEach(function(element) {
                 formData[element.name] = element.value;
             });
-            formData = JSON.stringify(formData, null, 2);
+            formData = JSON.stringify(formData);
             self.login(formData);
         });
     }
 
     Login.prototype.login = function(formData) {
-        // $.post(this.serverUrl + '/login', formData, function(answer) {
-        //     console.log(answer);
-        // });
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:3000/login',
-            data: '{"login": "admin", "password" : "admin"}',
-            dataType: 'json',
+            url: this.serverUrl,
+            data: formData,
             contentType: 'application/json;charset=UTF-8',
             success: function () {
                 alert('success');
@@ -42,7 +38,8 @@
                 alert('error');
             }
         });
-
+    }
+    
     Application.Login = Login;
     window.Application = Application;
 })(window)
