@@ -35,7 +35,7 @@
                 alert('success');
             },
             error: function() {
-                alert('error');
+                location.pathname="/notes.html";
             }
         });
     }
