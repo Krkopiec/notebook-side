@@ -4,23 +4,21 @@
     var Application = window.Application || {};
     var $ = window.jQuery;
 
-    function Login(loginFormSelector, serverUrl) {
-        if (!serverUrl || !loginFormSelector) {
-            throw new Error('No url or form selector provided');
+    function Login(serverUrl) {
+        if (!serverUrl) {
+            throw new Error('No url provided');
         }
-        this.$loginFormSelector = $(loginFormSelector);
         this.serverUrl = serverUrl;
     }
 
     Login.prototype.handleForm = function() {
         var self = this;
-        this.$loginFormSelector.on('submit', function(event) {
+        $('#login-form').on('submit', function(event) {
             event.preventDefault();
             var formData = {};
             $(this).serializeArray().forEach(function(element) {
                 formData[element.name] = element.value;
             });
-            formData = JSON.stringify(formData);
             self.login(formData);
         });
     }
@@ -28,18 +26,24 @@
     Login.prototype.login = function(formData) {
         $.ajax({
             type: 'POST',
-            url: this.serverUrl,
-            data: formData,
-            contentType: 'application/json;charset=UTF-8',
+            url: this.serverUrl + '/check-user',
+            data: JSON.stringify(formData),
+            contentType: 'application/json',
             success: function () {
-                alert('success');
+            	sessionStorage.setItem('login', formData.login);
+            	sessionStorage.setItem('password', formData.password);
+            	location.pathname="/notes.html";
             },
             error: function() {
-                location.pathname="/notes.html";
+                $('#login-error').show();
             }
         });
     }
     
     Application.Login = Login;
     window.Application = Application;
-})(window)
+
+    var SERVER_URL = 'http://localhost:8080'
+    var login = new Login(SERVER_URL);
+    login.handleForm();
+})(window);
