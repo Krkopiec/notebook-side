@@ -6,8 +6,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     </head>
     <body>
-        <div class="container">
+	    <div class="container">
+	    <div class="row">
+	    <div class="col">
             <form id="login-form">
+            	<div id="login-error" class="alert alert-danger mt-3" style="display:none" role="alert">
+  					Bad credentials
+				</div>
                 <div class="form-group">
                     <label for="login">Login</label>
                     <input id="login" class="form-control" name="login">
@@ -19,8 +24,9 @@
                 <button class="btn btn-default" type="submit">Login</button>
             </form>
         </div>
+        </div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
-        <script src="skrypty/login.js" charset="utf-8"></script>
-        <script src="skrypty/main.js" charset="utf-8"></script>
+        <script src="scripts/login.js" charset="utf-8"></script>
     </body>
 </html>
