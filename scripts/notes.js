@@ -5,8 +5,10 @@
     var $ = window.jQuery;
 
     function Notes() {
-        this.getNotes();
-    }
+		this.getNotes();
+		this.handlelogout();
+	}
+	
 
     Notes.prototype.getNotes = function() {
     	$.ajax({
@@ -38,7 +40,13 @@
 				alert('error');
 			}
     	});
-    }
+	}
+
+	Notes.prototype.handlelogout = function() {
+		$('#logout').on('click', function(event) {
+			location.pathname = "/index.html";
+		});
+	}
 
     Application.Notes = Notes;
     window.Application = Application;

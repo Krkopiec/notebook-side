@@ -32,7 +32,7 @@
             success: function () {
             	sessionStorage.setItem('login', formData.login);
             	sessionStorage.setItem('password', formData.password);
-            	location.pathname="/notes.html";
+            	location.pathname = "/notes.html";
             },
             error: function() {
                 $('#login-error').show();
